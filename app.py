@@ -2,7 +2,6 @@ import cv2
 import mediapipe as mp
 import streamlit as st
 import numpy as np
-import threading
 
 # Initialize mediapipe face mesh and hands modules
 mp_face_mesh = mp.solutions.face_mesh
@@ -102,13 +101,9 @@ start_button = st.button("Start Webcam")
 if 'webcam_started' not in st.session_state:
     st.session_state.webcam_started = False
 
-def start_webcam():
-    """ Start webcam feed in a new thread to prevent blocking the main thread """
-    threading.Thread(target=landmark_and_hand_detection, daemon=True).start()
-
 if start_button and not st.session_state.webcam_started:
     st.session_state.webcam_started = True
-    start_webcam()
+    landmark_and_hand_detection()
 
 # Show Stop button only after the webcam feed starts
 if st.session_state.webcam_started:
