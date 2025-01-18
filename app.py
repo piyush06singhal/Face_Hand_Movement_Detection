@@ -33,7 +33,7 @@ hand_positions = []
 # Function for real-time detection
 def landmark_and_hand_detection():
     # Access the webcam
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
 
     # Check if the webcam is opened correctly
     if not cap.isOpened():
