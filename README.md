@@ -6,26 +6,26 @@ This project is a real-time face landmark and hand movement detection applicatio
 
 1. **Real-Time Face Landmark Detection:**
 
-  Detects up to 468 facial landmarks in real-time.
+    Detects up to 468 facial landmarks in real-time.
 
-  Tracks facial expressions and features such as eyes, nose, and mouth.
+    Tracks facial expressions and features such as eyes, nose, and mouth.
 
 2. **Hand Movement Detection:**
 
-  Detects up to 21 hand landmarks per hand.
+    Detects up to 21 hand landmarks per hand.
 
-  Tracks hand gestures and movements with precision.
+    Tracks hand gestures and movements with precision.
 
-  Displays hand skeletons and allows visualization of connected joints.
+    Displays hand skeletons and allows visualization of connected joints.
 
 3. **Interactive Controls:**
 
-  Start and stop the webcam feed with simple button controls in the Streamlit        interface.
+    Start and stop the webcam feed with simple button controls in the Streamlit interface.
 
 4. **User-Friendly Interface:**
 
-  Streamlit provides an easy-to-use and visually appealing web interface for     
-  running the application.
+    Streamlit provides an easy-to-use and visually appealing web interface for     
+    running the application.
 
 -------------------------------------------------------------
 
@@ -43,22 +43,22 @@ This project is a real-time face landmark and hand movement detection applicatio
 
 1. **Face Mesh Detection:**
 
-  Mediapipe’s Face Mesh model detects facial landmarks on the input video stream.
+    Mediapipe’s Face Mesh model detects facial landmarks on the input video stream.
 
-  Landmarks are rendered with lines and dots to create a mesh-like visualization   
-  on the face.
+    Landmarks are rendered with lines and dots to create a mesh-like visualization   
+    on the face.
 
 2. **Hand Landmark Detection:**
 
-  Mediapipe’s Hands model detects hand landmarks and draws the connections between   them.
+    Mediapipe’s Hands model detects hand landmarks and draws the connections between   them.
   
-  Tracks multiple hands and renders skeleton-like structures for visualization.
+    Tracks multiple hands and renders skeleton-like structures for visualization.
 
 3. **Webcam Feed Control:**
 
-  The application opens the webcam feed when the Start Webcam button is pressed.
+    The application opens the webcam feed when the Start Webcam button is pressed.
   
-  Stops the webcam feed when the Stop Webcam button is clicked.
+    Stops the webcam feed when the Stop Webcam button is clicked.
 
 ## Installation
 
@@ -78,30 +78,30 @@ This project is a real-time face landmark and hand movement detection applicatio
 
 2. **Create a virtual environment (optional but recommended):**
 
-```bash
-python -m venv venv
-source venv/bin/activate  # For Linux/macOS
-venv\Scripts\activate     # For Windows
-```
+  ```bash
+  python -m venv venv
+  source venv/bin/activate  # For Linux/macOS
+  venv\Scripts\activate     # For Windows
+  ```
 
 3. **Install the required dependencies:**
 
-```bash
-pip install -r requirements.txt
-```
+  ```bash
+  pip install -r requirements.txt
+  ```
 
 4. **Run the application:**
 
-```bash
-streamlit run app.py
-```
+  ```bash
+  streamlit run app.py
+  ```
 
 # Usage
 
 1. Start the application by running the command:
-```bash
-  streamlit run app.py
-```
+  ```bash
+    streamlit run app.py
+  ```
 
 2. The application will open in your default web browser.
 
@@ -111,13 +111,13 @@ streamlit run app.py
 
 # Project Structure
 
-```bash
-real-time-face-hand-detection/
-├── app.py              # Main application code
-├── requirements.txt    # Dependencies for the project
-├── README.md           # Project documentation
-└── assets/             # (Optional) Folder for additional resources or images
-```
+  ```bash
+  real-time-face-hand-detection/
+  ├── app.py              # Main application code
+  ├── requirements.txt    # Dependencies for the project
+  ├── README.md           # Project documentation
+  └── assets/             # (Optional) Folder for additional resources or images
+  ```
 
 # Dependencies
 
@@ -128,9 +128,9 @@ real-time-face-hand-detection/
 3. **Streamlit**: ```bash pip install streamlit ```
 
 To install all dependencies at once, run:
-```bash
-  pip install -r requirements.txt
-```
+  ```bash
+    pip install -r requirements.txt
+  ```
 
 # Future Enhancements
 
@@ -149,31 +149,31 @@ Contributions are welcome! If you’d like to contribute, please follow these st
 1. Fork the repository.
 
 2. Create a new branch:
-```bash
-git checkout -b feature-name
-```
+  ```bash
+  git checkout -b feature-name
+  ```
 
 3. Commit your changes:
-```bash
-git commit -m "Added a new feature"
-```
+  ```bash
+  git commit -m "Added a new feature"
+  ```
 
 4. Push to the branch:
-```bash
-git push origin feature-name
-```
+  ```bash
+  git push origin feature-name
+  ```
 
 5. Submit a pull request.
 
 # License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+  This project is licensed under the MIT License. See the LICENSE file for details.
 
 # Author
 
-Piyush Singhal
-
-If you have any questions or suggestions, feel free to contact me via email or open an issue on this repository.
+  Piyush Singhal
+  
+  If you have any questions or suggestions, feel free to contact me via email or open an issue on this repository.
 
 # Acknowledgments
 
