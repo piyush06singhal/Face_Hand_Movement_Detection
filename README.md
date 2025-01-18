@@ -60,36 +60,47 @@ This project is a real-time face landmark and hand movement detection applicatio
   
   Stops the webcam feed when the Stop Webcam button is clicked.
 
-# Installation
+## Installation
 
-**Prerequisites**
+### Prerequisites
 
 1. Python 3.8 or higher installed on your system.
-
 2. Basic knowledge of Python programming.
 
-# Steps to Install
-Steps to Install
+### Steps to Install
 
-1. **Clone the repository:**
+1. **Clone the repository**:
 
-git clone https://github.com/yourusername/real-time-face-hand-detection.git
-cd real-time-face-hand-detection
+   ```bash
+   git clone https://github.com/yourusername/real-time-face-hand-detection.git
+   cd real-time-face-hand-detection
+Create a virtual environment (optional but recommended):
 
-2. **Create a virtual environment (optional but recommended):**
-
+bash
+Copy
+Edit
 python -m venv venv
 source venv/bin/activate  # For Linux/macOS
-venv\Scripts\activate   # For Windows
+venv\Scripts\activate     # For Windows
+Install the required dependencies:
 
-3. **Install the required dependencies:**
-
+bash
+Copy
+Edit
 pip install -r requirements.txt
+Run the application:
 
-4. **Run the application:**
-
+bash
+Copy
+Edit
 streamlit run app.py
+yaml
+Copy
+Edit
 
+---
+
+This formatting will ensure the comm
 # Usage
 
 1. Start the application by running the command:
