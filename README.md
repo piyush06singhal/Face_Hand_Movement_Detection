@@ -142,6 +142,13 @@ To install all dependencies at once, run:
 
 4. Allow saving of processed video frames with annotations.
 
+# Project Demo
+
+Check out the demo video:
+
+[Watch the Demo Video](https://github.com/piyush06singhal/Face_Hand_Movement_Detection/blob/main/streamlit-app-2025-01-18-22-01-94.webm)
+
+
 # Contributing
 
 Contributions are welcome! If you’d like to contribute, please follow these steps:
