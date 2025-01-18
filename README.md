@@ -74,38 +74,34 @@ This project is a real-time face landmark and hand movement detection applicatio
    ```bash
    git clone https://github.com/yourusername/real-time-face-hand-detection.git
    cd real-time-face-hand-detection
-Create a virtual environment (optional but recommended):
+   ```
 
-bash
-Copy
-Edit
+2. **Create a virtual environment (optional but recommended):**
+
+```bash
 python -m venv venv
 source venv/bin/activate  # For Linux/macOS
 venv\Scripts\activate     # For Windows
-Install the required dependencies:
+```
 
-bash
-Copy
-Edit
+3. **Install the required dependencies:**
+
+```bash
 pip install -r requirements.txt
-Run the application:
+```
 
-bash
-Copy
-Edit
+4. **Run the application:**
+
+```bash
 streamlit run app.py
-yaml
-Copy
-Edit
+```
 
----
-
-This formatting will ensure the comm
 # Usage
 
 1. Start the application by running the command:
-
+```bash
   streamlit run app.py
+```
 
 2. The application will open in your default web browser.
 
@@ -115,23 +111,26 @@ This formatting will ensure the comm
 
 # Project Structure
 
+```bash
 real-time-face-hand-detection/
 ├── app.py              # Main application code
 ├── requirements.txt    # Dependencies for the project
 ├── README.md           # Project documentation
 └── assets/             # (Optional) Folder for additional resources or images
+```
 
 # Dependencies
 
-1. **Mediapipe**: pip install mediapipe
+1. **Mediapipe**: ```bash pip install mediapipe ```
 
-2. **OpenCV**: pip install opencv-python
+2. **OpenCV**: ```bash pip install opencv-python ```
 
-3. **Streamlit**: pip install streamlit
+3. **Streamlit**: ```bash pip install streamlit ```
 
 To install all dependencies at once, run:
-
+```bash
   pip install -r requirements.txt
+```
 
 # Future Enhancements
 
@@ -150,16 +149,19 @@ Contributions are welcome! If you’d like to contribute, please follow these st
 1. Fork the repository.
 
 2. Create a new branch:
-
+```bash
 git checkout -b feature-name
+```
 
 3. Commit your changes:
-
+```bash
 git commit -m "Added a new feature"
+```
 
 4. Push to the branch:
-
+```bash
 git push origin feature-name
+```
 
 5. Submit a pull request.
 
