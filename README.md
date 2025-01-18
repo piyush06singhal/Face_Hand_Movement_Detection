@@ -4,7 +4,7 @@ This project is a real-time face landmark and hand movement detection applicatio
 
 # Features
 
-Real-Time Face Landmark Detection:
+**Real-Time Face Landmark Detection**
 
 Detects up to 468 facial landmarks in real-time.
 
