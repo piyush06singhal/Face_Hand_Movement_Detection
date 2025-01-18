@@ -45,6 +45,7 @@ def landmark_and_hand_detection():
     # Access the webcam
     cap = cv2.VideoCapture()
     
+    # Try to open the camera, get the correct index
     camera_index = try_open_camera(cap)
     
     if camera_index == -1:
