@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 import streamlit as st
 import numpy as np
+import threading
 
 # Initialize mediapipe face mesh and hands modules
 mp_face_mesh = mp.solutions.face_mesh
@@ -32,10 +33,7 @@ hand_positions = []
 
 # Function for real-time detection
 def landmark_and_hand_detection():
-    # Access the webcam
     cap = cv2.VideoCapture(0)
-
-    # Create a placeholder for displaying frames
     frame_placeholder = st.empty()
 
     while cap.isOpened():
@@ -59,7 +57,6 @@ def landmark_and_hand_detection():
         # If face landmarks are found, draw them on the frame
         if results_face.multi_face_landmarks:
             for landmarks in results_face.multi_face_landmarks:
-                # Draw face landmarks with a different color and spacing
                 mp_drawing.draw_landmarks(
                     image=frame,
                     landmark_list=landmarks,
@@ -71,7 +68,6 @@ def landmark_and_hand_detection():
         # If hand landmarks are found, draw them on the frame and track movement
         if results_hands.multi_hand_landmarks:
             for hand_landmarks in results_hands.multi_hand_landmarks:
-                # Draw hand landmarks
                 mp_drawing.draw_landmarks(
                     image=frame,
                     landmark_list=hand_landmarks,
@@ -80,7 +76,6 @@ def landmark_and_hand_detection():
                     connection_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2)
                 )
 
-                # Track hand positions for drawing
                 hand_positions.clear()  # Clear the positions for each frame
                 for i in range(0, 21):  # Iterate through the hand landmarks (21 points)
                     x = int(hand_landmarks.landmark[i].x * frame.shape[1])
@@ -97,10 +92,6 @@ def landmark_and_hand_detection():
         # Update the displayed frame
         frame_placeholder.image(frame, channels="BGR", use_container_width=True)
 
-        # Exit loop when the stop button is pressed
-        if not st.session_state.webcam_started:
-            break
-
     cap.release()
     cv2.destroyAllWindows()
 
@@ -111,9 +102,13 @@ start_button = st.button("Start Webcam")
 if 'webcam_started' not in st.session_state:
     st.session_state.webcam_started = False
 
+def start_webcam():
+    """ Start webcam feed in a new thread to prevent blocking the main thread """
+    threading.Thread(target=landmark_and_hand_detection, daemon=True).start()
+
 if start_button and not st.session_state.webcam_started:
     st.session_state.webcam_started = True
-    landmark_and_hand_detection()
+    start_webcam()
 
 # Show Stop button only after the webcam feed starts
 if st.session_state.webcam_started:
