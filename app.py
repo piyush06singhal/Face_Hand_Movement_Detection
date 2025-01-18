@@ -25,7 +25,7 @@ hands = mp_hands.Hands(
 
 # Streamlit UI setup
 st.title("Real-Time AI Face Landmark and Hand Movement Detection")
-st.markdown("It is a detection app which is created using Mediapipe, OpenCV, and Streamlit.")
+st.markdown("This is a detection app created using Mediapipe, OpenCV, and Streamlit.")
 
 # List to store hand positions for drawing lines
 hand_positions = []
@@ -96,6 +96,10 @@ def landmark_and_hand_detection():
 
         # Update the displayed frame
         frame_placeholder.image(frame, channels="BGR", use_container_width=True)
+
+        # Exit loop when the stop button is pressed
+        if not st.session_state.webcam_started:
+            break
 
     cap.release()
     cv2.destroyAllWindows()
