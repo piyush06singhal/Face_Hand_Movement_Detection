@@ -30,11 +30,25 @@ st.markdown("This is a detection app created using Mediapipe, OpenCV, and Stream
 # List to store hand positions for drawing lines
 hand_positions = []
 
+# Function to try accessing different camera indices
+def try_open_camera(cap, max_tries=5):
+    for i in range(max_tries):
+        cap.open(i)
+        if cap.isOpened():
+            return i  # Return the working camera index
+        cap.release()
+    return -1  # Return -1 if no camera found
+
 # Function for real-time detection
 def landmark_and_hand_detection():
     # Access the webcam
-    cap = cv2.VideoCapture(0)
-
+    cap = cv2.VideoCapture()
+    camera_index = try_open_camera(cap)
+    
+    if camera_index == -1:
+        st.error("No webcam found. Please ensure your webcam is connected.")
+        return
+    
     # Create a placeholder for displaying frames
     frame_placeholder = st.empty()
 
