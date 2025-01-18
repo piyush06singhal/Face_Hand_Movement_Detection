@@ -1,6 +1,7 @@
 import cv2
 import mediapipe as mp
 import streamlit as st
+import numpy as np
 
 # Initialize mediapipe face mesh and hands modules
 mp_face_mesh = mp.solutions.face_mesh
@@ -26,25 +27,15 @@ hands = mp_hands.Hands(
 st.title("Real-Time AI Face Landmark and Hand Movement Detection")
 st.markdown("This is a detection app created using Mediapipe, OpenCV, and Streamlit.")
 
-# Streamlit UI controls for starting and stopping webcam
-start_button = st.button("Start Webcam")
-
-# Check if webcam is running
-if 'webcam_started' not in st.session_state:
-    st.session_state.webcam_started = False
+# List to store hand positions for drawing lines
+hand_positions = []
 
 # Function for real-time detection
 def landmark_and_hand_detection():
     cap = cv2.VideoCapture(0)
-
-    # Check if webcam is opened
-    if not cap.isOpened():
-        st.error("Could not access the webcam. Please check the camera permissions or try a different device.")
-        return
-
     frame_placeholder = st.empty()
 
-    while True:
+    while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             st.warning("Failed to capture frame. Exiting...")
@@ -58,7 +49,7 @@ def landmark_and_hand_detection():
 
         # Process the frame with Mediapipe face mesh model
         results_face = face_mesh.process(rgb_frame)
-
+        
         # Process the frame with Mediapipe hands model
         results_hands = hands.process(rgb_frame)
 
@@ -84,6 +75,16 @@ def landmark_and_hand_detection():
                     connection_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2)
                 )
 
+                hand_positions.clear()  # Clear the positions for each frame
+                for i in range(0, 21):  # Iterate through the hand landmarks (21 points)
+                    x = int(hand_landmarks.landmark[i].x * frame.shape[1])
+                    y = int(hand_landmarks.landmark[i].y * frame.shape[0])
+                    hand_positions.append((x, y))
+
+                # Draw lines between specific hand points (for example, connecting the thumb and index finger)
+                for i in range(0, len(hand_positions)-1):
+                    cv2.line(frame, hand_positions[i], hand_positions[i+1], (255, 255, 0), 2)
+
         # Convert back to BGR for displaying
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
@@ -93,12 +94,18 @@ def landmark_and_hand_detection():
     cap.release()
     cv2.destroyAllWindows()
 
-# Start webcam button
+# Streamlit UI controls for starting and stopping webcam
+start_button = st.button("Start Webcam")
+
+# Use session state to track webcam status
+if 'webcam_started' not in st.session_state:
+    st.session_state.webcam_started = False
+
 if start_button and not st.session_state.webcam_started:
     st.session_state.webcam_started = True
     landmark_and_hand_detection()
 
-# Add a Stop button to stop webcam feed
+# Show Stop button only after the webcam feed starts
 if st.session_state.webcam_started:
     stop_button = st.button("Stop Webcam")
     if stop_button:
