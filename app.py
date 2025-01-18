@@ -98,7 +98,6 @@ def landmark_and_hand_detection():
         frame_placeholder.image(frame, channels="BGR", use_container_width=True)
 
     cap.release()
-    cv2.destroyAllWindows()
 
 # Streamlit UI controls for starting and stopping webcam
 start_button = st.button("Start Webcam")
@@ -117,4 +116,4 @@ if st.session_state.webcam_started:
     if stop_button:
         st.session_state.webcam_started = False
         st.info("Webcam stopped. Click 'Start Webcam' to resume.")
-        cv2.destroyAllWindows()
+        # No need to call cv2.destroyAllWindows() in Streamlit
