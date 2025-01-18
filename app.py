@@ -25,35 +25,16 @@ hands = mp_hands.Hands(
 
 # Streamlit UI setup
 st.title("Real-Time AI Face Landmark and Hand Movement Detection")
-st.markdown("This is a detection app created using Mediapipe, OpenCV, and Streamlit.")
+st.markdown("It is a detection app which is created using Mediapipe, OpenCV, and Streamlit.")
 
 # List to store hand positions for drawing lines
 hand_positions = []
 
-# Function to try accessing different camera indices
-def try_open_camera(cap, max_tries=5):
-    for i in range(max_tries):
-        cap.open(i)
-        if cap.isOpened():
-            st.write(f"Camera found at index {i}")  # Debugging message
-            return i  # Return the working camera index
-        cap.release()
-    return -1  # Return -1 if no camera found
-
 # Function for real-time detection
 def landmark_and_hand_detection():
     # Access the webcam
-    cap = cv2.VideoCapture()
-    
-    # Try to open the camera, get the correct index
-    camera_index = try_open_camera(cap)
-    
-    if camera_index == -1:
-        st.error("No webcam found. Please ensure your webcam is connected.")
-        return
-    
-    st.write(f"Using camera at index {camera_index}")  # Debugging message
-    
+    cap = cv2.VideoCapture(0)
+
     # Create a placeholder for displaying frames
     frame_placeholder = st.empty()
 
@@ -71,13 +52,14 @@ def landmark_and_hand_detection():
 
         # Process the frame with Mediapipe face mesh model
         results_face = face_mesh.process(rgb_frame)
-
+        
         # Process the frame with Mediapipe hands model
         results_hands = hands.process(rgb_frame)
 
         # If face landmarks are found, draw them on the frame
         if results_face.multi_face_landmarks:
             for landmarks in results_face.multi_face_landmarks:
+                # Draw face landmarks with a different color and spacing
                 mp_drawing.draw_landmarks(
                     image=frame,
                     landmark_list=landmarks,
@@ -89,6 +71,7 @@ def landmark_and_hand_detection():
         # If hand landmarks are found, draw them on the frame and track movement
         if results_hands.multi_hand_landmarks:
             for hand_landmarks in results_hands.multi_hand_landmarks:
+                # Draw hand landmarks
                 mp_drawing.draw_landmarks(
                     image=frame,
                     landmark_list=hand_landmarks,
@@ -112,7 +95,7 @@ def landmark_and_hand_detection():
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
         # Update the displayed frame
-        frame_placeholder.image(frame, channels="BGR", use_column_width=True)
+        frame_placeholder.image(frame, channels="BGR", use_container_width=True)
 
     cap.release()
     cv2.destroyAllWindows()
